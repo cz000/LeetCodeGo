@@ -1,0 +1,32 @@
+var vis [100][100]bool
+var tot int
+
+func totalNQueens(n int) int {
+
+	tot = 0
+	Eight(0, n)
+	return tot
+}
+
+func Eight(k int, n int) {
+
+	if k == n {
+		tot++
+	} else {
+		var i int
+
+		for i = 0; i < n; i++ {
+
+			if !vis[0][i] && !vis[1][k+i] && !vis[2][k-i+n] {
+				vis[0][i] = true
+				vis[1][k+i] = true
+				vis[2][k-i+n] = true
+				Eight(k+1, n)
+				vis[0][i] = false
+				vis[1][k+i] = false
+				vis[2][k-i+n] = false
+			}
+		}
+	}
+
+}
